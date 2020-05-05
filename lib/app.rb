@@ -9,24 +9,141 @@ $prompt = TTY::Prompt.new
 # p password
 
 def start
-    puts @a.asciify("Welcome to Doctor Finder !").green
-    userInfo
+    # puts @a.asciify("Welcome to Doctor Finder !").green
+    # userInfo
 
-    ask = $prompt.yes?('Do you like to find fav_list?')
-    p ask
-    ask ? find_fav_list : exit
+    # ask = $prompt.yes?('Do you like to find fav_list?')
+    # p ask
+    # ask ? find_fav_list : exit
 
     
-    ask = $prompt.yes?('Do you like to add fav_list?')
-    p ask
-    ask ? add_fav_list : exit
+    # ask = $prompt.yes?('Do you like to add fav_list?')
+    # p ask
+    # ask ? add_fav_list : exit
     
 
-    ask = $prompt.yes?('Do you like to delete fav_list?')
-    p ask
-    ask ? delete_fav_list : exit
+    # ask = $prompt.yes?('Do you like to delete fav_list?')
+    # p ask
+    # ask ? delete_fav_list : exit
+    search_specialty
     
 end
+
+
+# def search_requirement
+#     input= $prompt.select('How would you like to search for your doctor?') do |menu|
+#     menu.choice 'Zip Code', 1
+#     menu.choice 'Specialty', 2
+#     menu.choice 'Doctor Name', 3
+#     end 
+#     if input == 1
+#     search_zip_code 
+#     elsif input == 2
+#     search_specialty 
+#     elsif input == 3
+#     search_doctor_name 
+#     end 
+# end 
+
+def search_zip_code
+    zip_code_input= $prompt.ask("Please enter your zip code.")
+    p "The following doctors are located in your zip code. Please choose a doctor to continue:"
+    # # doctor = Doctor.where(address: zip_code_input)
+    # save_doctor(doctor)
+end 
+
+def save_doctor(doctor)
+    input = $prompt.select ("Would you like to save this doctor to your favorite's list?") do |menu|
+        menu.choice 'Yes', 1
+        menu.choice 'No', 2
+    end 
+    if input == 1
+        p "Your doctor has been added to your favorite's list."
+        # save_to_favs_list(user, doctor) 
+        input2 = $prompt.select ("What would you like to do next?") do |menu|
+            menu.choice 'See my favorite list?', 1
+            menu.choice 'Search for another doctor', 2
+        end 
+        if input2== 1
+            see_favorite_list 
+        elsif input2 == 2
+            search_requirement 
+        end 
+    elsif input == 2 
+        no_more=$prompt.select ("No problem! Would you like to search for another doctor?") do |menu|
+            menu.choice 'Yes', 1
+            menu.choice 'No', 2
+        end 
+        if no_more == 1
+            search_requirement 
+        elsif no_more == 2
+            p "Thank you for using DocSearch app!"
+        end 
+    end 
+end 
+
+def search_specialty
+    specialty_input= $prompt.select("What specialty would you like to search for?") do |menu|
+        menu.choice 'Pediatrics', 1
+        menu.choice 'Internal', 2
+        menu.choice 'General', 3
+    end 
+    if specialty_input == 1
+        pediatrics= Specialty.all.find_by(name: "Pediatrics")
+        pediatrics_list = Doctor.all.where(specialty_id: pediatrics.id)
+        pediatrics_list.collect do |inst| puts "#{inst.name}" end 
+            puts "Would you like to "
+        # save_doctor(doctor)
+    elsif specialty_input == 2
+        internal= Specialty.all.find_by(name: "Internal")
+        internal_list = Doctor.all.where(specialty_id: internal.id)
+        internal_list.collect do |inst| puts "#{inst.name}" end 
+            # save_doctor 
+    elsif specialty_input == 3 
+        general= Specialty.all.find_by(name: "General")
+        general_list = Doctor.all.where(specialty_id: general.id)
+        general_list.collect do |inst| puts "#{inst.name}" end 
+            # save_doctor 
+    end 
+end 
+
+def save_to_favs_list(user, doctor)
+    if Favs_list.all.include?(user)
+        user.favs_list << doctor 
+    else
+        Favs_list.create(user_id: user, doctor_id: doctor)
+        p "A new favorite's list has been created for you."
+        input= $prompt.select do |menu|
+            menu.choice "View Favorite's List", 1
+            menu.choice "Search for another Doctor", 2
+            menu.choice "Exit the app", 3 
+        end 
+        if input == 1 
+            see_favorite_list 
+        elsif input == 2
+            search_requirement 
+        elsif input == 3 
+            p "Thank you for using DocSearch app!"
+        end
+    end  
+end 
+
+
+def task_menu 
+    input= $prompt.select("What would you like to do next?") do |menu|
+        menu.choice "View Favorite's List", 1
+        menu.choice "Search for another Doctor", 2
+        menu.choice "Exit the app", 3 
+        end 
+        if input == 1 
+            see_favorite_list 
+        elsif input == 2
+            search_requirement 
+        elsif input == 3 
+            p "Thank you for using DocSearch app!"
+        end
+end 
+
 
 # 1. Create User or Check if User exists
 #     -If exists, return user name 

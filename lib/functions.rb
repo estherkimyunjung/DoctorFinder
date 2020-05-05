@@ -4,7 +4,7 @@ def userInfo
     if find_user(user_name)
         displayInfo(user_name)
     else
-        p " Please check user name , it is not correct"
+        p " Please check user name , it is not correct" 
         puts "Select option"
         sign_up(user_name)
     end
@@ -17,8 +17,8 @@ def option(user_name)
     list = ["Sign up your account",
     "Search doctor by location",
     "Search doctor by specialty",
-    "Create your favourite doctor lists",
-    "View your favourite doctor lists",
+    "Create your favorite doctor lists",
+    "View your favorite doctor lists",
     "Delete doctor from your lists",
     "Welcome",
     "Exit"]
