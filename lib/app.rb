@@ -9,23 +9,23 @@ $prompt = TTY::Prompt.new
 # p password
 
 def start
-    # puts @a.asciify("Welcome to Doctor Finder !").green
-    # userInfo
+    puts @a.asciify("Welcome to Doctor Finder !").green
+    userInfo
 
-    # ask = $prompt.yes?('Do you like to find fav_list?')
-    # p ask
-    # ask ? find_fav_list : exit
+    ask = $prompt.yes?('Do you like to find fav_list?')
+    p ask
+    ask ? find_fav_list : exit
 
     
-    # ask = $prompt.yes?('Do you like to add fav_list?')
-    # p ask
-    # ask ? add_fav_list : exit
+    ask = $prompt.yes?('Do you like to add fav_list?')
+    p ask
+    ask ? add_fav_list : exit
     
 
-    # ask = $prompt.yes?('Do you like to delete fav_list?')
-    # p ask
-    # ask ? delete_fav_list : exit
-    search_specialty
+    ask = $prompt.yes?('Do you like to delete fav_list?')
+    p ask
+    ask ? delete_fav_list : exit
+    # search_specialty
     
 end
 

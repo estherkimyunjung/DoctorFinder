@@ -17,7 +17,9 @@ GEM
     coderay (1.1.2)
     colorize (0.8.1)
     concurrent-ruby (1.1.6)
+    database_cleaner (1.8.5)
     equatable (0.6.1)
+    git-audio-commit (1.0.0)
     httparty (0.18.0)
       mime-types (~> 3.0)
       multi_xml (>= 0.5.2)
@@ -81,6 +83,8 @@ DEPENDENCIES
   activerecord (~> 5.2)
   artii
   colorize
+  database_cleaner
+  git-audio-commit
   httparty
   json
   pry
