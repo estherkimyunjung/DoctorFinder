@@ -55,30 +55,6 @@ def show_doctor_info(view)
     end 
 end 
 
-
-# def save_doctor(doctor)
-#     # input = $prompt.select ("Would you like to save this doctor to your favorite's list?") do |menu|
-#     #     menu.choice 'Yes', 1
-#     #     menu.choice 'No', 2
-#     # end 
-#     # if input == 1
-#     p "Your doctor has been added to your favorite's list."
-#     add_fav_list(doctor)
-#     input2 = $prompt.select ("What would you like to do next?") do |menu|
-#     menu.choice 'See my favorite list?', 1
-#     menu.choice 'Search for another doctor', 2
-#     menu.choice 'Exit Doctor Search', 3
-#     end 
-#     if input2== 1
-#         find_fav_list
-#     elsif input2 == 2
-#         search_requirement 
-#     elsif input2 == 3
-#         "Thank you for using Doctor Search, have a great day!"
-#     end 
-    
-# end 
-
 def search_specialty
     specialty_input= $prompt.select("What specialty would you like to search for?") do |menu|
         menu.choice 'Pediatrics', 1
@@ -131,27 +107,10 @@ def search_specialty
 end 
 end 
 
-# def save_to_favs_list(user, doctor)
-#     if Favs_list.all.include?(user)
-#         user.favs_list << doctor 
-#     else
-#         Favs_list.create(user_id: user, doctor_id: doctor)
-#         p "A new favorite's list has been created for you."
-#         input= $prompt.select do |menu|
-#             menu.choice "View Favorite's List", 1
-#             menu.choice "Search for another Doctor", 2
-#             menu.choice "Exit the app", 3 
-#         end 
-#         if input == 1 
-#             see_favorite_list 
-#         elsif input == 2
-#             search_requirement 
-#         elsif input == 3 
-#             p "Thank you for using DocSearch app!"
-#         end
-#     end  
-# end 
-
+def search_specialty_instance(instance, type)
+    specialty= Specialty.all.find_by(name: type)
+    specialty_list = psych_list = Doctor.all.where(specialty_id: psych.id)
+end 
 
 def task_menu 
     input= $prompt.select("What would you like to do next?") do |menu|
