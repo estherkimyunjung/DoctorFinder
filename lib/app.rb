@@ -9,8 +9,23 @@ $prompt = TTY::Prompt.new
 # p password
 
 def start
-    puts @a.asciify("Welcome to Doctor !!").green
+    puts @a.asciify("Welcome to Doctor Finder !").green
     userInfo
+
+    ask = $prompt.yes?('Do you like to find fav_list?')
+    p ask
+    ask ? find_fav_list : exit
+
+    
+    ask = $prompt.yes?('Do you like to add fav_list?')
+    p ask
+    ask ? add_fav_list : exit
+    
+
+    ask = $prompt.yes?('Do you like to delete fav_list?')
+    p ask
+    ask ? delete_fav_list : exit
+    
 end
 
 # 1. Create User or Check if User exists
