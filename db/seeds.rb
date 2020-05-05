@@ -18,9 +18,9 @@ Location.destroy_all
 u1=User.create(name: "Esther")
 u2=User.create(name: "Stephanie")
 
-l1=Location.create(address:"77441")
-l2=Location.create(address:"77450")
-l3=Location.create(address:"San Antonio")
+l1=Location.create(address: "30803 Crest View terrace", city:"Fulshear", state: "TX", zip_code:77441)
+l2=Location.create(zip_code:77441)
+l3=Location.create(zip_code:"San Antonio")
 
 s1=Specialty.create(name: "Pediatrics")
 s2=Specialty.create(name: "Internal")
