@@ -44,6 +44,7 @@ d5=Doctor.create(name: "John Paulsel", location_id: l6.id, phone_number: "713-32
 d6=Doctor.create(name: "Onyinye Agim", location_id: l3.id, phone_number: "832-321-1155", specialty_id: s3.id)
 d7=Doctor.create(name: "Diana Sutton", location_id: l4.id, phone_number: "281-333-5555", specialty_id: s1.id)
 d8=Doctor.create(name: "Jesus Pimentel", location_id: l2.id, phone_number: "832-111-1111", specialty_id: s2.id)
+d9=Doctor.create(name: "Mark Massey", location_id: l5.id, phone_number: "832-445-1111", specialty_id: s4.id)
 
 
 f1=Favs_list.create(user_id: u1.id, doctor_id: d3.id, rating: 5, comments: "I  enjoyed her direct approach and her ability to quickly understand my situation.")
