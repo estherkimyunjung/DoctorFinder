@@ -7,13 +7,10 @@ Bundler.require
 
 # put the code to connect to the database here
 ActiveRecord::Base.establish_connection(
-:adapter => "sqlite3",
+  :adapter => "sqlite3",
   :database => "db/module.sqlite"
-<<<<<<< HEAD
 )
 
-=======
-  )
-  require_all 'app/models'
-  require_all 'lib'
->>>>>>> esther
+require_all 'app/models'
+require_all 'lib'
+
