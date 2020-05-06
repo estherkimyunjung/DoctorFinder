@@ -1,6 +1,6 @@
 class Doctor < ActiveRecord::Base
-    has_many :favs_list
-    has_many :users, through: :favs_list 
+    has_many :favorites
+    has_many :users, through: :favorites
     belongs_to :specialty
     belongs_to :location 
 end

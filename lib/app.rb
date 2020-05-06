@@ -64,8 +64,8 @@ def search_rating
 end 
 
 def rating_input_selection(rating_input_given)
-    if Favs_list.all.map do |inst| inst.rating end.include?(rating_input_given.to_i)
-        ratings_list = Favs_list.all.where(rating: rating_input_given)
+    if Favorite.all.map do |inst| inst.rating end.include?(rating_input_given.to_i)
+        ratings_list = Favorite.all.where(rating: rating_input_given)
         selection = ratings_list.map do |inst| Doctor.find(inst.doctor_id).name end 
         view = $prompt.select("The following doctors have a rating of #{rating_input_given}. Please choose a doctor to continue:".blue, selection)  
         show_doctor_info(view) 
