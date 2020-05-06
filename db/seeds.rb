@@ -43,15 +43,24 @@ d6=Doctor.create(name: "Onyinye Agim", location_id: l3.id, phone_number: "832-32
 d7=Doctor.create(name: "Diana Sutton", location_id: l4.id, phone_number: "281-333-5555", specialty_id: s1.id, gender: "Female")
 d8=Doctor.create(name: "Jesus Pimentel", location_id: l2.id, phone_number: "832-111-1111", specialty_id: s2.id, gender: "Male")
 d9=Doctor.create(name: "Mark Massey", location_id: l5.id, phone_number: "832-445-1111", specialty_id: s4.id, gender: "Male")
+d10=Doctor.create(name: "Irvin Tantuc", location_id: l5.id, phone_number: "713-484-1321", specialty_id: s6.id, gender: "Male")
+d11=Doctor.create(name: "Daniel Scrieber", location_id: l6.id, phone_number: "713-222-2572", specialty_id: s1.id, gender: "Male")
+d12=Doctor.create(name: "Alannis Boom", location_id: l3.id, phone_number: "713-236-8612", specialty_id: s2.id, gender: "Female")
+d13=Doctor.create(name: "Gretchen Sora", location_id: l2.id, phone_number: "713-394-5595", specialty_id: s4.id, gender: "Female")
+d14=Doctor.create(name: "Elijah Brushel", location_id: l1.id, phone_number: "713-241-7894", specialty_id: s3.id, gender: "Male")
+d15=Doctor.create(name: "Owen Splater", location_id: l3.id, phone_number: "832-317-1875", specialty_id: s1.id, gender: "Male")
+d16=Doctor.create(name: "Melanie Johnson", location_id: l4.id, phone_number: "346-313-5755", specialty_id: s2.id, gender: "Female")
+d17=Doctor.create(name: "Ed Wong", location_id: l4.id, phone_number: "832-101-7845", specialty_id: s6.id, gender: "Male")
+d18=Doctor.create(name: "Richard Yeh", location_id: l5.id, phone_number: "346-444-8751", specialty_id: s4.id, gender: "Male")
 
 
-f1=Favorite.create(user_id: u1.id, doctor_id: d3.id, rating: 5, comments: "I  enjoyed her direct approach and her ability to quickly understand my situation.")
+f1=Favorite.create(user_id: u1.id, doctor_id: d3.id, rating: 5, comments: "I enjoyed her direct approach and her ability to quickly understand my situation.")
 f2=Favorite.create(user_id: u2.id, doctor_id: d2.id, rating: 4, comments: "I would highly recommend.")
 f3=Favorite.create(user_id: u2.id, doctor_id: d8.id, rating: 3, comments: "I very much appreciate the on time performance of my appointment.")
-f4=Favorite.create(user_id: u4.id, doctor_id: d1.id, rating: 4, comments: "All my visits with this doctor are good and leaves me in a happy mood.")
+f4=Favorite.create(user_id: u4.id, doctor_id: d1.id, rating: 4, comments: "All my visits with this doctor were good and left me in a happy mood.")
 f5=Favorite.create(user_id: u3.id, doctor_id: d7.id, rating: 5, comments: "The reviews intrigued me which is why i saw her.")
-f6=Favorite.create(user_id: u5.id, doctor_id: d8.id, rating: 4, comments: "I would highly recommend Dr.Jesus.")
-f7=Favorite.create(user_id: u5.id, doctor_id: d4.id, rating: 5, comments: "I Highly professional and polite! Would strongly recommend.")
+f6=Favorite.create(user_id: u5.id, doctor_id: d8.id, rating: 4, comments: "I would highly recommend Dr. Jesus.")
+f7=Favorite.create(user_id: u5.id, doctor_id: d4.id, rating: 5, comments: "He was very professional and polite! Would strongly recommend.")
 
 
 binding.pry 

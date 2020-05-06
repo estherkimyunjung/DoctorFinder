@@ -106,7 +106,7 @@ def show_doctor_info(view)
     puts table 
     puts " "
 
-    save= $prompt.select("Would you like to save this doctor in your favorite's list?") do |menu|
+    save= $prompt.select("Would you like to save this doctor in your Favorites list?") do |menu|
         menu.choice 'Yes', 1
         menu.choice 'No', 2
     end 
@@ -152,10 +152,10 @@ end
 def task_menu 
     input= $prompt.select("What would you like to do next?") do |menu|
         menu.choice "Search for a Doctor", 1
-        menu.choice "View Favorite's List", 2
-        menu.choice "Add to Favorite's List", 3 
-        menu.choice "Update Favorite's List", 4
-        menu.choice "Delete from Favorite's List", 5
+        menu.choice "View Favorites List", 2
+        menu.choice "Add to Favorites List", 3 
+        menu.choice "Update Favorites List", 4
+        menu.choice "Delete from Favorites List", 5
         menu.choice "Exit App", 6
         end 
         if input == 1 
