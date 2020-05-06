@@ -43,6 +43,15 @@ d6=Doctor.create(name: "Onyinye Agim", location_id: l3.id, phone_number: "832-32
 d7=Doctor.create(name: "Diana Sutton", location_id: l4.id, phone_number: "281-333-5555", specialty_id: s1.id, gender: "Female")
 d8=Doctor.create(name: "Jesus Pimentel", location_id: l2.id, phone_number: "832-111-1111", specialty_id: s2.id, gender: "Male")
 d9=Doctor.create(name: "Mark Massey", location_id: l5.id, phone_number: "832-445-1111", specialty_id: s4.id, gender: "Male")
+d10=Doctor.create(name: "Irvin Tantuc", location_id: l5.id, phone_number: "713-484-1321", specialty_id: s6.id, gender: "Male")
+d11=Doctor.create(name: "Daniel Scrieber", location_id: l6.id, phone_number: "713-222-2572", specialty_id: s1.id, gender: "Male")
+d12=Doctor.create(name: "Alannis Boom", location_id: l3.id, phone_number: "713-236-8612", specialty_id: s2.id, gender: "Female")
+d13=Doctor.create(name: "Gretchen Sora", location_id: l2.id, phone_number: "713-394-5595", specialty_id: s4.id, gender: "Female")
+d14=Doctor.create(name: "Elijah Brushel", location_id: l1.id, phone_number: "713-241-7894", specialty_id: s3.id, gender: "Male")
+d15=Doctor.create(name: "Owen Splater", location_id: l3.id, phone_number: "832-317-1875", specialty_id: s1.id, gender: "Male")
+d16=Doctor.create(name: "Melanie Johnson", location_id: l4.id, phone_number: "346-313-5755", specialty_id: s2.id, gender: "Female")
+d17=Doctor.create(name: "Ed Wong", location_id: l4.id, phone_number: "832-101-7845", specialty_id: s6.id, gender: "Male")
+d18=Doctor.create(name: "Richard Yeh", location_id: l5.id, phone_number: "346-444-8751", specialty_id: s4.id, gender: "Male")
 
 
 f1=Favorite.create(user_id: u1.id, doctor_id: d3.id, rating: 5, comments: "I enjoyed her direct approach and her ability to quickly understand my situation.")

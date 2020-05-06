@@ -3,9 +3,9 @@ $prompt = TTY::Prompt.new(symbols: {marker: '✓'}, active_color: :blue)
 
 
 def start
-    puts @a.asciify("------------------").blue
-    puts @a.asciify("Welcome to Doctor Finder!").blue
-    puts @a.asciify("------------------").blue
+    puts @a.asciify("------------------").magenta
+    puts @a.asciify("Welcome to Doctor Finder!").magenta
+    puts @a.asciify("------------------").magenta
     userInfo
     task_menu 
 end 
@@ -94,7 +94,7 @@ end
 
 def show_doctor_info(view)
     doctor_instance = Doctor.all.find_by(name: view)
-    table = Terminal::Table.new :title => "#{doctor_instance.name}".upcase.yellow, :style => {:width => 100, :padding_left => 3, :border_x => "=", :border_i => "="} do |t|
+    table = Terminal::Table.new :title => "#{doctor_instance.name}".yellow, :style => {:width => 100, :padding_left => 3, :border_x => "=", :border_i => "="} do |t|
         t << ["Address".upcase.green, "#{doctor_instance.location.address}\n#{doctor_instance.location.city}, #{doctor_instance.location.state} #{doctor_instance.location.zip_code}"]
         t << :separator
         t.add_row ["Specialty".upcase.green, doctor_instance.specialty.name]
@@ -104,8 +104,9 @@ def show_doctor_info(view)
         t.add_row ["Gender".upcase.green, doctor_instance.gender]
       end
     puts table 
+    puts " "
 
-    save= $prompt.select("Would you like to save this doctor in your Favorite's list?") do |menu|
+    save= $prompt.select("Would you like to save this doctor in your Favorites list?") do |menu|
         menu.choice 'Yes', 1
         menu.choice 'No', 2
     end 
@@ -151,23 +152,27 @@ end
 def task_menu 
     input= $prompt.select("What would you like to do next?") do |menu|
         menu.choice "Search for a Doctor", 1
-        menu.choice "View Favorite's List", 2
-        menu.choice "Add to Favorite's List", 3 
-        menu.choice "Delete from Favorite's List", 4
-        menu.choice "Exit App", 5
+        menu.choice "View Favorites List", 2
+        menu.choice "Add to Favorites List", 3 
+        menu.choice "Update Favorites List", 4
+        menu.choice "Delete from Favorites List", 5
+        menu.choice "Exit App", 6
         end 
         if input == 1 
             search_requirement
         elsif input == 2
-            new_fav_list_view
-            # find_fav_list
+            fav_list_table
         elsif input == 3 
             search_requirement 
         elsif input == 4
-            delete_fav_list
+            update_fav_list
         elsif input == 5
-           puts "Thank you for using Doctor Finder!"
-           exit 
+            delete_fav_list
+        elsif input == 6
+            puts " "
+            puts "Thank you for using Doctor Finder!".cyan
+            puts " "
+            exit 
         end
 end 
 
