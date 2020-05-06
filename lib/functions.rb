@@ -1,6 +1,6 @@
 
 def userInfo
-    user_name = $prompt.ask("Please enter your user name")
+    user_name = $prompt.ask("Please enter your user name:")
     @user_name = user_name 
     if find_user(user_name)
         displayInfo(user_name)
@@ -24,7 +24,7 @@ end
 #     "Welcome",
 #     "Exit"]
     
-#     input = $prompt.select("*".green,list)
+#     input = $prompt.select("*".,list)
 #     case input
 #     when list[0]
 #         User.create(name: $user_name)
@@ -41,7 +41,7 @@ end
 #         system "clear"
 #         start
 #     when list[7]
-#         puts @a.asciify("Thanks for using our service !").green
+#         puts @a.asciify("Thanks for using our service !").
 #     end       
 # end
 
@@ -49,7 +49,7 @@ end
 def sign_up(user_name)
     list = ["Try again", "Create an account"]
 
-    input = $prompt.select("*".green,list)
+    input = $prompt.select("*".blue,list)
     case input
     when list[0]
         system "clear"
@@ -107,7 +107,7 @@ def delete_fav_list
 end
 
 def displayInfo(name)
-    p "Hi #{name}!! Welcome to our DOCTOR SEARCH"
+    p "Hi #{name}! Welcome to Doctor Finder!"
 end
 
 
