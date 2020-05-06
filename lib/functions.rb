@@ -1,6 +1,6 @@
 
 def userInfo
-    user_name = $prompt.ask("Please enter your user name")
+    user_name = $prompt.ask("Please enter your user name:")
     @user_name = user_name 
     if find_user(user_name)
         displayInfo(user_name)
@@ -116,7 +116,7 @@ end
 
 
 def displayInfo(name)
-    p "Hi #{name}!! Welcome to our DOCTOR SEARCH"
+    p "Hi #{name}! Welcome to Doctor Finder!"
 end
 
 

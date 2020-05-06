@@ -1,8 +1,9 @@
-$prompt = TTY::Prompt.new
+$prompt = TTY::Prompt.new(symbols: {marker: '✓'}, active_color: :blue)
 @a = Artii::Base.new
 
+
 def start
-    puts @a.asciify("Welcome to Doctor Finder!").green
+    puts @a.asciify("Welcome to Doctor Finder!").blue
     userInfo
     task_menu 
 end 
@@ -27,8 +28,13 @@ def search_zip_code
         location_list = Doctor.all.where(location_id: list.id)
         
         selection=  location_list.all.collect do |inst| inst.name end 
+<<<<<<< HEAD
             view = $prompt.select("The following doctors are located in your zip code. Please choose a doctor to continue:".green, selection)
             show_doctor_info(view)
+=======
+        view = $prompt.select("The following doctors are located in your zip code. Please choose a doctor to continue:".blue, selection)
+        show_doctor_info(view)
+>>>>>>> Stephanie
     else
         p "There are no matching doctors in your zip code."
         task_menu
@@ -37,14 +43,19 @@ end
 
 def show_doctor_info(view)
     doctor_instance = Doctor.all.find_by(name: view)
-    table = Terminal::Table.new :title => "#{doctor_instance.name}" do |t|
-        t << ["Address", "#{doctor_instance.location.address}\n#{doctor_instance.location.city}, #{doctor_instance.location.state} #{doctor_instance.location.zip_code}"]
+    table = Terminal::Table.new :title => "#{doctor_instance.name}".upcase.red, :style => {:width => 100, :padding_left => 3, :border_x => "=", :border_i => "="} do |t|
+        t << ["Address".upcase.red, "#{doctor_instance.location.address}\n#{doctor_instance.location.city}, #{doctor_instance.location.state} #{doctor_instance.location.zip_code}"]
         t << :separator
-        t.add_row ["Specialty", doctor_instance.specialty.name]
+        t.add_row ["Specialty".upcase.red, doctor_instance.specialty.name]
         t << :separator 
+<<<<<<< HEAD
         t.add_row ["Phone Number", doctor_instance.phone_number]
     end
 
+=======
+        t.add_row ["Phone Number".upcase.red, doctor_instance.phone_number]
+      end
+>>>>>>> Stephanie
     puts table 
 
     save= $prompt.select("Would you like to save this doctor in your favorite's list?") do |menu|
@@ -69,58 +80,26 @@ def search_specialty
     end 
 
     if specialty_input == 1
-        pediatrics= Specialty.all.find_by(name: "Pediatrics")
-        pediatrics_list = Doctor.all.where(specialty_id: pediatrics.id) 
-        
-        selection= pediatrics_list.all.collect do |inst| inst.name end 
-        view = $prompt.select("The following doctors practice #{pediatrics.name} medicine. Please choose a doctor to continue:".green, selection)
-        show_doctor_info(view)
-    
+        search_specialty_instance("Pediatrics")
     elsif specialty_input == 2
-        internal= Specialty.all.find_by(name: "Internal")
-        internal_list = Doctor.all.where(specialty_id: internal.id)
-
-        selection= internal_list.all.collect do |inst| inst.name end 
-        view = $prompt.select("The following doctors practice #{internal.name} medicine. Please choose a doctor to continue:".green, selection)
-        show_doctor_info(view)
-            
+        search_specialty_instance("Internal")
     elsif specialty_input == 3 
-        surgery= Specialty.all.find_by(name: "surgery")
-        surgery_list = Doctor.all.where(specialty_id: surgery.id)
-
-        selection= surgery_list.all.collect do |inst| inst.name end 
-        view = $prompt.select("The following doctors practice #{surgery.name}. Please choose a doctor to continue:".green, selection)
-        show_doctor_info(view)
-
-    elsif specialty_input == 4
-        family= Specialty.all.find_by(name: "Family Physician")
-        family_list = Doctor.all.where(specialty_id: family.id)
-
-        selection= family_list.all.collect do |inst| inst.name end 
-        view = $prompt.select("The following doctors practice #{family.name} medicine. Please choose a doctor to continue:".green, selection)
-        show_doctor_info(view)
-        
+        search_specialty_instance("surgery")
+    elsif specialty_input == 4 
+        search_specialty_instance("Family Physician")
     elsif specialty_input == 5 
-        obgyn= Specialty.all.find_by(name: "Obstetrics")
-        obgyn_list = Doctor.all.where(specialty_id: obgyn.id)
-
-        selection= obgyn_list.all.collect do |inst| inst.name end 
-        view = $prompt.select("The following doctors practice #{obgyn.name} medicine. Please choose a doctor to continue:".green, selection)
-        show_doctor_info(view)
-
+        search_specialty_instance("Obstetrics")
     elsif specialty_input == 6
-        psych= Specialty.all.find_by(name: "Psychiatry")
-        psych_list = Doctor.all.where(specialty_id: psych.id)
-
-        selection= psych_list.all.collect do |inst| inst.name end 
-        view = $prompt.select("The following doctors practice #{psych.name} medicine. Please choose a doctor to continue:".green, selection)
-        show_doctor_info(view)
-    end 
+        search_specialty_instance("Psychiatry")
+end 
 end 
 
-def search_specialty_instance(instance, type)
+def search_specialty_instance(type)
     specialty= Specialty.all.find_by(name: type)
-    specialty_list = psych_list = Doctor.all.where(specialty_id: psych.id)
+    specialty_list = Doctor.all.where(specialty_id: specialty.id)
+    selection= specialty_list.all.collect do |inst| inst.name end 
+        view = $prompt.select("The following doctors practice #{type} medicine. Please choose a doctor to continue:".blue, selection)
+        show_doctor_info(view)
 end 
 
 def task_menu 
@@ -128,21 +107,16 @@ def task_menu
         menu.choice "Search for a Doctor", 1
         menu.choice "View Favorite's List", 2
         menu.choice "Add to Favorite's List", 3 
-        menu.choice "Delete from Favorite's List", 4
-        menu.choice "Exit App", 5
-    end 
-
-    if input == 1 
-        search_requirement
-    elsif input == 2
-        find_fav_list
-    elsif input == 3 
-        search_requirement 
-    elsif input == 4
-        delete_fav_list
-    elsif input == 5
-        puts "Thank you for using Doctor Finder!"
-        exit
-    end
+        menu.choice "Exit App", 4
+        end 
+        if input == 1 
+            search_requirement
+        elsif input == 2
+            find_fav_list
+        elsif input == 3 
+            search_requirement 
+        elsif input == 4
+            "Thank you for using Doctor Finder!"
+        end
 end 
 

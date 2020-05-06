@@ -5,11 +5,11 @@ Doctor.destroy_all
 Specialty.destroy_all 
 Location.destroy_all 
 
-# url="https://api.betterdoctor.com/2016-03-01/doctors?name=name%20&specialty_uid=specialty%20&location=37.773%2C-122.413%2C100&user_location=37.773%2C-122.413&skip=0&limit=10&user_key=8ed303f4adaf6ae910d05c6257bd5cb3"
+# url="https://api.betterdoctor.com/2016-03-01/doctors?location=37.773,-122.413,100&skip=2&limit=10&user_key='8ed303f4adaf6ae910d05c6257bd5cb3"
 
-# # uri = URI.parse(url)
-# # response = Net::HTTP.get_response(uri)
-# # data = JSON.parse(response.body)
+# uri = URI.parse(url)
+# response = Net::HTTP.get_response(uri)
+# data = JSON.parse(response.body)
 
 # response = HTTParty.get(url)
 
