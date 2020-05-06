@@ -3,13 +3,9 @@ $prompt = TTY::Prompt.new(symbols: {marker: '✓'}, active_color: :blue)
 
 
 def start
-<<<<<<< HEAD
+    puts @a.asciify("------------------").magenta
     puts @a.asciify("Welcome to Doctor Finder!").magenta
-=======
-    puts @a.asciify("------------------").blue
-    puts @a.asciify("Welcome to Doctor Finder!").blue
-    puts @a.asciify("------------------").blue
->>>>>>> master
+    puts @a.asciify("------------------").magenta
     userInfo
     task_menu 
 end 
@@ -108,6 +104,7 @@ def show_doctor_info(view)
         t.add_row ["Gender".upcase.green, doctor_instance.gender]
       end
     puts table 
+    puts " "
 
     save= $prompt.select("Would you like to save this doctor in your favorite's list?") do |menu|
         menu.choice 'Yes', 1
@@ -164,8 +161,8 @@ def task_menu
         if input == 1 
             search_requirement
         elsif input == 2
-            new_fav_list_view
-            # find_fav_list
+            # new_fav_list_view
+            fav_list_table
         elsif input == 3 
             search_requirement 
         elsif input == 4
@@ -173,8 +170,10 @@ def task_menu
         elsif input == 5
             update_fav_list
         elsif input == 6
-           puts "Thank you for using Doctor Finder!".cyan
-           exit 
+            puts " "
+            puts "Thank you for using Doctor Finder!".cyan
+            puts " "
+            exit 
         end
 end 
 
