@@ -38,7 +38,7 @@ end
 
 def show_doctor_info(view)
     doctor_instance = Doctor.all.find_by(name: view)
-    table = Terminal::Table.new :title => "#{doctor_instance.name}".upcase.yellow, :style => {:width => 100, :padding_left => 3, :border_x => "=", :border_i => "="} do |t|
+    table = Terminal::Table.new :title => "#{doctor_instance.name}".yellow, :style => {:width => 100, :padding_left => 3, :border_x => "=", :border_i => "="} do |t|
         t << ["Address".upcase.green, "#{doctor_instance.location.address}\n#{doctor_instance.location.city}, #{doctor_instance.location.state} #{doctor_instance.location.zip_code}"]
         t << :separator
         t.add_row ["Specialty".upcase.green, doctor_instance.specialty.name]
