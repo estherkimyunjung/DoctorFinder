@@ -67,51 +67,29 @@ def fav_list_table
     task_menu
 end
 
-# binding.pry
 def add_fav_list(doctor)
     user = find_user(@user_name)
     doctor = find_doctor(doctor.name)
     new_fav = Favorite.create(user_id: user.id, doctor_id: doctor.id)
     if find_favs_list.map{|lists| lists.id == new_fav.id}
-        puts " "
-        puts "You already have in your Favorite's List".red
-        puts " "
-    else
-        update_favs_list = Favorite.all.select{|f_favs_list| f_favs_list.user_id == f_user.id}
-        doc = update_favs_list.map{|f| f.doctor_id}.uniq
-        d_id = doc.each {|d| 
-        find_favs_list << [("#{Doctor.find_by(id: d).name}"),("#{Doctor.find_by(id: d).specialty.name} Medicine, Phone Number: #{Doctor.find_by(id: d).phone_number}")]
-        }
-        fav_list_view
-        puts " "
-        puts "Updated Your Favorite's List is shown above.".cyan
-        puts " "
-    end
+    puts " "
+    puts "You already have in your Favorite's List".red
+    puts " "
+else
+    update_favs_list = Favorite.all.select{|f_favs_list| f_favs_list.user_id == f_user.id}
+    doc = update_favs_list.map{|f| f.doctor_id}.uniq
+    d_id = doc.each {|d| 
+    find_favs_list << [("#{Doctor.find_by(id: d).name}"),("#{Doctor.find_by(id: d).specialty.name} Medicine, Phone Number: #{Doctor.find_by(id: d).phone_number}")]
+}
+fav_list_view
+puts " "
+puts "Updated Your Favorite's List is shown above.".cyan
+puts " "
+end
 task_menu
 end
 
-
-#     f_user = find_user(@user_name)
-#     f_doctor = find_doctor(doctor.name)
-#     f_favs_list = fav_list_view.map{|fav_lites| fav_lists}
-    
-#     Favs_list.create(user_id: f_user.id, doctor_id: f_doctor.id)
-#     update_favs_list = Favs_list.all.select{|f_favs_list| f_favs_list.user_id == f_user.id}
-#     doc = update_favs_list.map{|f| f.doctor_id}.uniq
-#     d_id = doc.each {|d| doctor_info("#{Doctor.find_by(id: d).name}") }
-#     puts "Updated Your Favorite's List is shown above.".cyan
-#     puts " "
-#     task_menu
-
-#     # f_favs_list = find_favs_list_inst
-#     # if f_favs_list != []
-#     #     doc = f_favs_list.map{|f| f.doctor_id}.uniq
-#     #     d_id = doc.each {|d| doctor_info("#{Doctor.find_by(id: d).name}") }
-            
-#     # else
-#     #     puts "This doctor is already in your fav_list.".red
-#     # end
-
+# binding.pry
 
 # # def update_fav_list(doctor_instance)
 # #     # f_user = find_user(@user_name)
@@ -190,5 +168,4 @@ def displayInfo(name)
     puts "Hi #{name}! Welcome to Doctor Finder!".cyan
     puts " "
 end
-
 
