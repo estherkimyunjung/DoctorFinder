@@ -12,8 +12,6 @@ Location.destroy_all
 # # data = JSON.parse(response.body)
 
 # response = HTTParty.get(url)
-# binding.pry 
-# 0
 
 u1=User.create(name: "Esther")
 u2=User.create(name: "Stephanie")
@@ -56,3 +54,5 @@ f6=Favs_list.create(user_id: u5.id, doctor_id: d8.id, rating: 4, comments: "I wo
 f7=Favs_list.create(user_id: u5.id, doctor_id: d4.id, rating: 5, comments: "I Highly professional and polite! Would strongly recommend.")
 
 
+binding.pry 
+0

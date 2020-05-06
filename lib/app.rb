@@ -10,13 +10,13 @@ end
 
 def search_requirement
     input= $prompt.select('How would you like to search for your doctor?') do |menu|
-    menu.choice 'Zip Code', 1
-    menu.choice 'Specialty', 2
+        menu.choice 'Zip Code', 1
+        menu.choice 'Specialty', 2
     end 
     if input == 1
-    search_zip_code 
+        search_zip_code 
     elsif input == 2
-    search_specialty 
+        search_specialty 
     end 
 end 
 
@@ -25,12 +25,13 @@ def search_zip_code
     if Location.all.map do |inst| inst.zip_code end.include?(zip_code_input.to_i)
         list = Location.all.find_by(zip_code: zip_code_input)
         location_list = Doctor.all.where(location_id: list.id)
+        
         selection=  location_list.all.collect do |inst| inst.name end 
-        view = $prompt.select("The following doctors are located in your zip code. Please choose a doctor to continue:".green, selection)
-        show_doctor_info(view)
+            view = $prompt.select("The following doctors are located in your zip code. Please choose a doctor to continue:".green, selection)
+            show_doctor_info(view)
     else
-    p "There are no matching doctors in your zip code."
-    task_menu
+        p "There are no matching doctors in your zip code."
+        task_menu
     end 
 end 
 
@@ -42,8 +43,10 @@ def show_doctor_info(view)
         t.add_row ["Specialty", doctor_instance.specialty.name]
         t << :separator 
         t.add_row ["Phone Number", doctor_instance.phone_number]
-      end
+    end
+
     puts table 
+
     save= $prompt.select("Would you like to save this doctor in your favorite's list?") do |menu|
         menu.choice 'Yes', 1
         menu.choice 'No', 2
@@ -63,48 +66,56 @@ def search_specialty
         menu.choice 'Family Physician', 4
         menu.choice 'Obstetrics', 5
         menu.choice 'Psychiatry', 6
-
     end 
+
     if specialty_input == 1
         pediatrics= Specialty.all.find_by(name: "Pediatrics")
         pediatrics_list = Doctor.all.where(specialty_id: pediatrics.id) 
+        
         selection= pediatrics_list.all.collect do |inst| inst.name end 
         view = $prompt.select("The following doctors practice #{pediatrics.name} medicine. Please choose a doctor to continue:".green, selection)
-            show_doctor_info(view)
+        show_doctor_info(view)
     
     elsif specialty_input == 2
         internal= Specialty.all.find_by(name: "Internal")
         internal_list = Doctor.all.where(specialty_id: internal.id)
+
         selection= internal_list.all.collect do |inst| inst.name end 
-            view = $prompt.select("The following doctors practice #{internal.name} medicine. Please choose a doctor to continue:".green, selection)
-                show_doctor_info(view)
+        view = $prompt.select("The following doctors practice #{internal.name} medicine. Please choose a doctor to continue:".green, selection)
+        show_doctor_info(view)
             
     elsif specialty_input == 3 
         surgery= Specialty.all.find_by(name: "surgery")
         surgery_list = Doctor.all.where(specialty_id: surgery.id)
+
         selection= surgery_list.all.collect do |inst| inst.name end 
-            view = $prompt.select("The following doctors practice #{surgery.name}. Please choose a doctor to continue:".green, selection)
-                show_doctor_info(view)
+        view = $prompt.select("The following doctors practice #{surgery.name}. Please choose a doctor to continue:".green, selection)
+        show_doctor_info(view)
+
     elsif specialty_input == 4
         family= Specialty.all.find_by(name: "Family Physician")
         family_list = Doctor.all.where(specialty_id: family.id)
+
         selection= family_list.all.collect do |inst| inst.name end 
-            view = $prompt.select("The following doctors practice #{family.name} medicine. Please choose a doctor to continue:".green, selection)
-            show_doctor_info(view)
+        view = $prompt.select("The following doctors practice #{family.name} medicine. Please choose a doctor to continue:".green, selection)
+        show_doctor_info(view)
         
     elsif specialty_input == 5 
         obgyn= Specialty.all.find_by(name: "Obstetrics")
         obgyn_list = Doctor.all.where(specialty_id: obgyn.id)
+
         selection= obgyn_list.all.collect do |inst| inst.name end 
-            view = $prompt.select("The following doctors practice #{obgyn.name} medicine. Please choose a doctor to continue:".green, selection)
-            show_doctor_info(view)
+        view = $prompt.select("The following doctors practice #{obgyn.name} medicine. Please choose a doctor to continue:".green, selection)
+        show_doctor_info(view)
+
     elsif specialty_input == 6
         psych= Specialty.all.find_by(name: "Psychiatry")
         psych_list = Doctor.all.where(specialty_id: psych.id)
+
         selection= psych_list.all.collect do |inst| inst.name end 
-            view = $prompt.select("The following doctors practice #{psych.name} medicine. Please choose a doctor to continue:".green, selection)
-            show_doctor_info(view)
-end 
+        view = $prompt.select("The following doctors practice #{psych.name} medicine. Please choose a doctor to continue:".green, selection)
+        show_doctor_info(view)
+    end 
 end 
 
 def search_specialty_instance(instance, type)
@@ -119,17 +130,18 @@ def task_menu
         menu.choice "Add to Favorite's List", 3 
         menu.choice "Delete from Favorite's List", 4
         menu.choice "Exit App", 5
-        end 
-        if input == 1 
-            search_requirement
-        elsif input == 2
-            find_fav_list
-        elsif input == 3 
-            search_requirement 
-        elsif input == 4
-            delete_fav_list
-        elsif input == 5
-            "Thank you for using Doctor Finder!"
-        end
+    end 
+
+    if input == 1 
+        search_requirement
+    elsif input == 2
+        find_fav_list
+    elsif input == 3 
+        search_requirement 
+    elsif input == 4
+        delete_fav_list
+    elsif input == 5
+        "Thank you for using Doctor Finder!"
+    end
 end 
 
