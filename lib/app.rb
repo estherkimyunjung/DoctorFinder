@@ -141,7 +141,8 @@ def task_menu
     elsif input == 4
         delete_fav_list
     elsif input == 5
-        "Thank you for using Doctor Finder!"
+        puts "Thank you for using Doctor Finder!"
+        exit
     end
 end 
 
