@@ -45,13 +45,13 @@ d8=Doctor.create(name: "Jesus Pimentel", location_id: l2.id, phone_number: "832-
 d9=Doctor.create(name: "Mark Massey", location_id: l5.id, phone_number: "832-445-1111", specialty_id: s4.id, gender: "Male")
 
 
-f1=Favorite.create(user_id: u1.id, doctor_id: d3.id, rating: 5, comments: "I  enjoyed her direct approach and her ability to quickly understand my situation.")
+f1=Favorite.create(user_id: u1.id, doctor_id: d3.id, rating: 5, comments: "I enjoyed her direct approach and her ability to quickly understand my situation.")
 f2=Favorite.create(user_id: u2.id, doctor_id: d2.id, rating: 4, comments: "I would highly recommend.")
 f3=Favorite.create(user_id: u2.id, doctor_id: d8.id, rating: 3, comments: "I very much appreciate the on time performance of my appointment.")
-f4=Favorite.create(user_id: u4.id, doctor_id: d1.id, rating: 4, comments: "All my visits with this doctor are good and leaves me in a happy mood.")
+f4=Favorite.create(user_id: u4.id, doctor_id: d1.id, rating: 4, comments: "All my visits with this doctor were good and left me in a happy mood.")
 f5=Favorite.create(user_id: u3.id, doctor_id: d7.id, rating: 5, comments: "The reviews intrigued me which is why i saw her.")
-f6=Favorite.create(user_id: u5.id, doctor_id: d8.id, rating: 4, comments: "I would highly recommend Dr.Jesus.")
-f7=Favorite.create(user_id: u5.id, doctor_id: d4.id, rating: 5, comments: "I Highly professional and polite! Would strongly recommend.")
+f6=Favorite.create(user_id: u5.id, doctor_id: d8.id, rating: 4, comments: "I would highly recommend Dr. Jesus.")
+f7=Favorite.create(user_id: u5.id, doctor_id: d4.id, rating: 5, comments: "He was very professional and polite! Would strongly recommend.")
 
 
 binding.pry 

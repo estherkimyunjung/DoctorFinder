@@ -105,7 +105,7 @@ def show_doctor_info(view)
       end
     puts table 
 
-    save= $prompt.select("Would you like to save this doctor in your favorite's list?") do |menu|
+    save= $prompt.select("Would you like to save this doctor in your Favorite's list?") do |menu|
         menu.choice 'Yes', 1
         menu.choice 'No', 2
     end 
