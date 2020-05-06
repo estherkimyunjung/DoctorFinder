@@ -154,21 +154,20 @@ def task_menu
         menu.choice "Search for a Doctor", 1
         menu.choice "View Favorite's List", 2
         menu.choice "Add to Favorite's List", 3 
-        menu.choice "Delete from Favorite's List", 4
-        menu.choice "Undate from Favorite's List", 5
+        menu.choice "Update Favorite's List", 4
+        menu.choice "Delete from Favorite's List", 5
         menu.choice "Exit App", 6
         end 
         if input == 1 
             search_requirement
         elsif input == 2
-            # new_fav_list_view
             fav_list_table
         elsif input == 3 
             search_requirement 
         elsif input == 4
-            delete_fav_list
-        elsif input == 5
             update_fav_list
+        elsif input == 5
+            delete_fav_list
         elsif input == 6
             puts " "
             puts "Thank you for using Doctor Finder!".cyan

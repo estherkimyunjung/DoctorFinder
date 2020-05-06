@@ -38,42 +38,42 @@ end
 
 def find_favs_list
     f_user = find_user(@user_name)
-    f_favs_list = Favs_list.all.select{|f_favs_list| f_favs_list.user_id == f_user.id}
+    f_favs_list = Favorite.all.select{|f_favs_list| f_favs_list.user_id == f_user.id}
 end
 
-def doctor_info(view)
-    doctor = find_doctor(view)
-    table = Terminal::Table.new :title => "#{doctor.name}".yellow, :style => {:width => 100, :padding_left => 3, :border_x => "=", :border_i => "="} do |t|
-        t << ["Address".upcase.green, "#{doctor.location.address}\n#{doctor.location.city}, #{doctor.location.state} #{doctor.location.zip_code}"]
-        t << :separator
-        t.add_row ["Specialty".upcase.green, doctor.specialty.name]
-        t << :separator 
-        t.add_row ["Phone Number".upcase.green, doctor.phone_number]
-        t << :separator 
-        t.add_row ["Gender".upcase.green, doctor.gender]
-    end
-    puts table  
-    puts " "       
-end 
+# def doctor_info(view)
+#     doctor = find_doctor(view)
+#     table = Terminal::Table.new :title => "#{doctor.name}".yellow, :style => {:width => 100, :padding_left => 3, :border_x => "=", :border_i => "="} do |t|
+#         t << ["Address".upcase.green, "#{doctor.location.address}\n#{doctor.location.city}, #{doctor.location.state} #{doctor.location.zip_code}"]
+#         t << :separator
+#         t.add_row ["Specialty".upcase.green, doctor.specialty.name]
+#         t << :separator 
+#         t.add_row ["Phone Number".upcase.green, doctor.phone_number]
+#         t << :separator 
+#         t.add_row ["Gender".upcase.green, doctor.gender]
+#     end
+#     puts table  
+#     puts " "       
+# end 
 
-def new_fav_list_view
-    f_user = find_user(@user_name)
-    f_favorite = Favorite.all.select{|f_favs_list| f_favs_list.user_id == f_user.id}
-    if f_favs_list != []
-    large_table=Terminal::Table.new :title =>"#{@user_name}'s Favorites List".upcase.yellow, :style => {:width => 100, :padding_left => 3, :border_x => "=", :border_i => "="} do |t|
-    doc = f_favs_list.map{|f| f.doctor_id}.uniq
-    d_id = doc.each {|d| 
-    t << [("#{Doctor.find_by(id: d).name}"),("#{Doctor.find_by(id: d).specialty.name} Medicine, Phone Number: #{Doctor.find_by(id: d).phone_number}")]
-    t << :separator
-    }
-    end 
-    puts large_table 
-    task_menu
-    else
-    puts "You don't have fav_list."
-    task_menu
-    end
-end
+# def new_fav_list_view
+#     f_user = find_user(@user_name)
+#     f_favorite = Favorite.all.select{|f_favs_list| f_favs_list.user_id == f_user.id}
+#     if f_favs_list != []
+#     large_table=Terminal::Table.new :title =>"#{@user_name}'s Favorites List".upcase.yellow, :style => {:width => 100, :padding_left => 3, :border_x => "=", :border_i => "="} do |t|
+#     doc = f_favs_list.map{|f| f.doctor_id}.uniq
+#     d_id = doc.each {|d| 
+#     t << [("#{Doctor.find_by(id: d).name}"),("#{Doctor.find_by(id: d).specialty.name} Medicine, Phone Number: #{Doctor.find_by(id: d).phone_number}")]
+#     t << :separator
+#     }
+#     end 
+#     puts large_table 
+#     task_menu
+#     else
+#     puts "You don't have fav_list."
+#     task_menu
+#     end
+# end
 
 def fav_list_view
     # f_favs_list = find_favs_list
@@ -102,13 +102,17 @@ end
 def add_fav_list(doctor)
     f_user = find_user(@user_name)
     f_doctor = find_doctor(doctor.name)
-    new_fav = Favs_list.create(user_id: f_user.id, doctor_id: f_doctor.id)
-    update_favs_list = Favs_list.all.select{|f_favs_list| f_favs_list.user_id == f_user.id}
+    new_fav = Favorite.create(user_id: f_user.id, doctor_id: f_doctor.id)
+    update_favs_list = Favorite.all.select{|f_favs_list| f_favs_list.user_id == f_user.id}
     doc = update_favs_list.map{|f| f.doctor_id}.uniq
     d_id = doc.each {|d| 
     find_favs_list << [("#{Doctor.find_by(id: d).name}"),("#{Doctor.find_by(id: d).specialty.name} Medicine, Phone Number: #{Doctor.find_by(id: d).phone_number}")]
     }
     fav_list_view
+    puts " "
+    puts "Updated Your Favorite's List is shown above.".cyan
+    puts " "
+
 task_menu
 
 
@@ -181,7 +185,7 @@ def delete_fav_list
     doctor_name = $prompt.ask("Please enter your doctor name that you would like to delete.")
     f_doctor = find_doctor(doctor_name)
     if !f_doctor
-        puts "Your doctor's name cannot be found in fav_list.".red  
+        puts "Your doctor's name cannot be found in favorite list.".red  
 
         list = ["Try again", "Go back to main menu"]
         input = $prompt.select("*".green,list)
@@ -195,15 +199,20 @@ def delete_fav_list
         end
     
     else
-        d_favs_list = Favs_list.find_by(user_id: f_user.id, doctor_id: f_doctor.id)
+        d_favs_list = Favorite.find_by(user_id: f_user.id, doctor_id: f_doctor.id)
         if d_favs_list != []
             d_favs_list.delete
-            update_favs_list = Favs_list.all.select{|f_favs_list| f_favs_list.user_id == f_user.id}
+            update_favs_list = Favorite.all.select{|f_favs_list| f_favs_list.user_id == f_user.id}
             doc = update_favs_list.map{|f| f.doctor_id}.uniq
-            d_id = doc.each {|d| doctor_info("#{Doctor.find_by(id: d).name}") }
-            puts "Your fav_list has been updated".cyan
+            d_id = doc.each {|d| 
+            find_favs_list << [("#{Doctor.find_by(id: d).name}"),("#{Doctor.find_by(id: d).specialty.name} Medicine, Phone Number: #{Doctor.find_by(id: d).phone_number}")]
+            }
+            fav_list_view
+            puts " "
+            puts "Your Favorite's List has been updated please review above".cyan
+            puts " "
         else
-            puts "You don't have fav_list to delete.".red 
+            puts "You don't have Favorite to delete.".red 
         end
     end
     task_menu
