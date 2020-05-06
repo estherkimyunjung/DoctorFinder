@@ -28,13 +28,8 @@ def search_zip_code
         location_list = Doctor.all.where(location_id: list.id)
         
         selection=  location_list.all.collect do |inst| inst.name end 
-<<<<<<< HEAD
-            view = $prompt.select("The following doctors are located in your zip code. Please choose a doctor to continue:".green, selection)
-            show_doctor_info(view)
-=======
         view = $prompt.select("The following doctors are located in your zip code. Please choose a doctor to continue:".blue, selection)
         show_doctor_info(view)
->>>>>>> Stephanie
     else
         p "There are no matching doctors in your zip code."
         task_menu
@@ -48,14 +43,8 @@ def show_doctor_info(view)
         t << :separator
         t.add_row ["Specialty".upcase.red, doctor_instance.specialty.name]
         t << :separator 
-<<<<<<< HEAD
-        t.add_row ["Phone Number", doctor_instance.phone_number]
-    end
-
-=======
         t.add_row ["Phone Number".upcase.red, doctor_instance.phone_number]
       end
->>>>>>> Stephanie
     puts table 
 
     save= $prompt.select("Would you like to save this doctor in your favorite's list?") do |menu|
