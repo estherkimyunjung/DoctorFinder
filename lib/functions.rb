@@ -47,7 +47,8 @@ def doctor_info(view)
         t << :separator 
         t.add_row ["Gender".upcase.green, doctor_instance.gender]
     end
-    puts table         
+    puts table  
+    puts " "       
 end 
 
 
