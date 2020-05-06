@@ -38,12 +38,12 @@ end
 
 def doctor_info(view)
     doctor_instance = Doctor.all.find_by(name: view)
-    table = Terminal::Table.new :title => "#{doctor_instance.name}" do |t|
-        t << ["Address", "#{doctor_instance.location.address}\n#{doctor_instance.location.city}, #{doctor_instance.location.state} #{doctor_instance.location.zip_code}"]
+    table = Terminal::Table.new :title => "#{doctor_instance.name}".upcase.green, :style => {:width => 100, :padding_left => 3, :border_x => "=", :border_i => "="} do |t|
+        t << ["Address".upcase.green, "#{doctor_instance.location.address}\n#{doctor_instance.location.city}, #{doctor_instance.location.state} #{doctor_instance.location.zip_code}"]
         t << :separator
-        t.add_row ["Specialty", doctor_instance.specialty.name]
+        t.add_row ["Specialty".upcase.green, doctor_instance.specialty.name]
         t << :separator 
-        t.add_row ["Phone Number", doctor_instance.phone_number]
+        t.add_row ["Phone Number".upcase.green, doctor_instance.phone_number]
     end
     puts table         
 end 
@@ -86,7 +86,7 @@ def delete_fav_list
     doctor_name = $prompt.ask("Please enter your doctor name that you would like to delete.")
     f_doctor = find_doctor(doctor_name)
     if !f_doctor
-        puts "Your doctor's name cannot be found in fav_list." 
+        puts "Your doctor's name cannot be found in fav_list.".red  
 
         list = ["Try again", "Go back to main menu"]
         input = $prompt.select("*".green,list)
@@ -108,7 +108,7 @@ def delete_fav_list
             d_id = doc.each {|d| doctor_info("#{Doctor.find_by(id: d).name}") }
             puts "Your fav_list has been updated"
         else
-            puts "You don't have fav_list to delete."
+            puts "You don't have fav_list to delete.".red 
         end
     end
     task_menu

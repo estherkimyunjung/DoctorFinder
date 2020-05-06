@@ -38,12 +38,12 @@ end
 
 def show_doctor_info(view)
     doctor_instance = Doctor.all.find_by(name: view)
-    table = Terminal::Table.new :title => "#{doctor_instance.name}".upcase.red, :style => {:width => 100, :padding_left => 3, :border_x => "=", :border_i => "="} do |t|
-        t << ["Address".upcase.red, "#{doctor_instance.location.address}\n#{doctor_instance.location.city}, #{doctor_instance.location.state} #{doctor_instance.location.zip_code}"]
+    table = Terminal::Table.new :title => "#{doctor_instance.name}".upcase.green, :style => {:width => 100, :padding_left => 3, :border_x => "=", :border_i => "="} do |t|
+        t << ["Address".upcase.green, "#{doctor_instance.location.address}\n#{doctor_instance.location.city}, #{doctor_instance.location.state} #{doctor_instance.location.zip_code}"]
         t << :separator
-        t.add_row ["Specialty".upcase.red, doctor_instance.specialty.name]
+        t.add_row ["Specialty".upcase.green, doctor_instance.specialty.name]
         t << :separator 
-        t.add_row ["Phone Number".upcase.red, doctor_instance.phone_number]
+        t.add_row ["Phone Number".upcase.green, doctor_instance.phone_number]
       end
     puts table 
 
@@ -96,7 +96,8 @@ def task_menu
         menu.choice "Search for a Doctor", 1
         menu.choice "View Favorite's List", 2
         menu.choice "Add to Favorite's List", 3 
-        menu.choice "Exit App", 4
+        menu.choice "Delete from Favorite's List", 4
+        menu.choice "Exit App", 5
         end 
         if input == 1 
             search_requirement
@@ -105,7 +106,10 @@ def task_menu
         elsif input == 3 
             search_requirement 
         elsif input == 4
-            "Thank you for using Doctor Finder!"
+            delete_fav_list
+        elsif input == 5
+           puts "Thank you for using Doctor Finder!"
+           exit 
         end
 end 
 
