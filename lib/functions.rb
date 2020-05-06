@@ -38,8 +38,8 @@ end
 
 
 def find_favs_list
-    f_user = find_user(@user_name)
-    f_favs_list = Favorite.all.select{|f_favs_list| f_favs_list.user_id == f_user.id}
+    user = find_user(@user_name)
+    favs_list = Favorite.all.select{|favs_lists| favs_lists.user_id == user.id}
 end
 
 
@@ -51,6 +51,7 @@ def fav_list_view
                 t << [("#{Doctor.find_by(id: d).name}"),("#{Doctor.find_by(id: d).specialty.name} Medicine, Phone Number: #{Doctor.find_by(id: d).phone_number}")]
             }
         end
+        puts " "
         puts large_table
     else
         puts "You don't have favorite list.".red
@@ -66,7 +67,7 @@ def fav_list_table
     puts " "
     task_menu
 end
-
+# binding.pry
 def add_fav_list(doctor)
     user = find_user(@user_name)
     doctor = find_doctor(doctor.name)
@@ -92,6 +93,7 @@ end
 
 # binding.pry
 def update_fav_list
+    # find_favs_list
 
 end
 
