@@ -51,6 +51,25 @@ def doctor_info(view)
     puts " "       
 end 
 
+def new_fav_list_view
+    f_user = find_user(@user_name)
+    f_favs_list = Favs_list.all.select{|f_favs_list| f_favs_list.user_id == f_user.id}
+    if f_favs_list != []
+    large_table=Terminal::Table.new :title =>"#{@user_name}'s Favorites List".upcase.yellow, :style => {:width => 100, :padding_left => 3, :border_x => "=", :border_i => "="} do |t|
+    doc = f_favs_list.map{|f| f.doctor_id}.uniq
+    d_id = doc.each {|d| 
+    t << [("#{Doctor.find_by(id: d).name}"),("#{Doctor.find_by(id: d).specialty.name} Medicine, Phone Number: #{Doctor.find_by(id: d).phone_number}")]
+    t << :separator
+    }
+    end 
+    puts large_table 
+    task_menu
+    else
+    puts "You don't have fav_list."
+    task_menu
+    end
+end 
+
 
 def fav_list_view
     f_user = find_user(@user_name)
