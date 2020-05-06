@@ -3,7 +3,7 @@ $prompt = TTY::Prompt.new(symbols: {marker: '✓'}, active_color: :blue)
 
 
 def start
-    puts @a.asciify("Welcome to Doctor Finder!").blue
+    puts @a.asciify("Welcome to Doctor Finder!").magenta
     userInfo
     task_menu 
 end 
@@ -99,7 +99,8 @@ def task_menu
         menu.choice "View Favorite's List", 2
         menu.choice "Add to Favorite's List", 3 
         menu.choice "Delete from Favorite's List", 4
-        menu.choice "Exit App", 5
+        menu.choice "Undate from Favorite's List", 5
+        menu.choice "Exit App", 6
         end 
         if input == 1 
             search_requirement
@@ -110,7 +111,9 @@ def task_menu
         elsif input == 4
             delete_fav_list
         elsif input == 5
-           puts "Thank you for using Doctor Finder!"
+            update_fav_list
+        elsif input == 6
+           puts "Thank you for using Doctor Finder!".cyan
            exit 
         end
 end 
