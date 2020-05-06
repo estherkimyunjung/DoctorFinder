@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 9) do
+ActiveRecord::Schema.define(version: 11) do
 
   create_table "doctors", force: :cascade do |t|
     t.string "name"
@@ -18,6 +18,13 @@ ActiveRecord::Schema.define(version: 9) do
     t.string "phone_number"
     t.integer "specialty_id"
     t.string "gender"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "doctor_id"
+    t.integer "rating"
+    t.string "comments"
   end
 
   create_table "favs_lists", force: :cascade do |t|
