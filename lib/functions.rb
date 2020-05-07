@@ -135,4 +135,3 @@ def displayInfo(name)
     puts "Hi #{name}! Welcome to Doctor Finder!".cyan
     puts " "
 end
-
