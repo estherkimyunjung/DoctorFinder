@@ -1,3 +1,18 @@
+def find_user(user_name)
+    user= User.find_by(name: user_name)
+end
+
+
+def find_doctor(doctor_name)
+    doctor = Doctor.find_by(name: doctor_name)
+end
+
+
+def find_favs_list
+    user = find_user(@user_name)
+    favs_list = Favorite.all.select{|favs_list| favs_list.user_id == user.id}
+end
+
 
 def userInfo
     user_name = $prompt.ask("Please enter your user name:")
@@ -27,6 +42,7 @@ def sign_up(user_name)
 end
 
 
+<<<<<<< HEAD
 def find_user(user_name)
     user= User.find_by(name: user_name)
 end
@@ -43,6 +59,8 @@ def find_favs_list
 end
 
 
+=======
+>>>>>>> esther
 def fav_list_view
     if find_favs_list != []
         large_table=Terminal::Table.new :title =>"#{@user_name}'s Favorites List".upcase.yellow, :style => {:width => 100, :padding_left => 3, :border_x => "=", :border_i => "="} do |t|
@@ -67,19 +85,23 @@ def fav_list_table
     puts " "
     task_menu
 end
+<<<<<<< HEAD
 # binding.pry
+=======
+
+
+>>>>>>> esther
 def add_fav_list(doctor)
     user = find_user(@user_name)
-    doctor = find_doctor(doctor.name)
-    new_fav = Favorite.create(user_id: user.id, doctor_id: doctor.id)
     
-    if find_favs_list.map{|lists| lists.id == new_fav.id}
+    if user.favorites.find{|favs| favs.doctor_id == doctor.id}
         puts " "
         puts "You already have in your Favorite's List".red
         puts " "
     else
-        update_favs_list = Favorite.all.select{|f_favs_list| f_favs_list.user_id == f_user.id}
-        doc = update_favs_list.map{|f| f.doctor_id}.uniq
+        new_fav = Favorite.create(user_id: user.id, doctor_id: doctor.id)
+        find_favs_list << new_fav
+        doc = find_favs_list.map{|f| f.doctor_id}.uniq
         d_id = doc.each {|d| 
             find_favs_list << [("#{Doctor.find_by(id: d).name}"),("#{Doctor.find_by(id: d).specialty.name} Medicine, Phone Number: #{Doctor.find_by(id: d).phone_number}")]
         }
@@ -91,9 +113,12 @@ def add_fav_list(doctor)
     task_menu
 end
 
+# d8.favorites.map{|favs| favs.user_id }
+# u1.favorites.map{|favs| favs.doctor_id}
 # binding.pry
 def update_fav_list
     # find_favs_list
+
 
 end
 
@@ -120,8 +145,7 @@ def delete_fav_list
         end
     
     else
-        d_favs_list = Favorite.find_by(user_id: user.id, doctor_id: doctor.id)
-        d_favs_list.delete
+        Favorite.find_by(user_id: user.id, doctor_id: doctor.id).delete
         fav_list_view
         puts " "
         puts "Your Favorite's List has been updated please review above".cyan
