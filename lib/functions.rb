@@ -131,7 +131,7 @@ end
 def update_fav_list
     fav_list_view
     
-    doctor_name = $prompt.ask("please enter doctor's name you wish to update their rating and comments.")
+    doctor_name = $prompt.ask("Please enter doctor's name you wish to update their rating and comments.")
     doctor = find_doctor(doctor_name)
     if !doctor
         puts " "
