@@ -5,7 +5,6 @@ Doctor Finder is allows you to search for doctors based on their specialty, loca
 
 ### Initial Setup
 
-<<<<<<< HEAD
 1. Fork and clone this repository to your local machine.
 2. CD into the directory where you cloned
 3. Type bundle install
@@ -31,12 +30,3 @@ Your final option with the favorites list is to delete a doctor.
 
 ## Option Six - Exit
 Allows you to exit the application. 
-=======
-##How to run this program?
-
-1. `bundle Install`
-Please make sure to "Bundle Install" first in order to install the required gems for this application. 
->>>>>>> master
-
-2. `ruby bin/run.rb`
-This is run command
