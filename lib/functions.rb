@@ -2,6 +2,7 @@ def find_user(user_name)
     user = User.find_by(name: user_name)
 end
 
+
 def user
     find_user(@user_name)
 end
@@ -82,12 +83,9 @@ def fav_list_view
     if find_favs_list != []
         large_table=Terminal::Table.new :title =>"#{@user_name}'s Favorites List".upcase.yellow, :style => {:width => 125, :padding_left => 3, :border_x => "=", :border_i => "="} do |t|
             doc = find_favs_list.map{|f| f.doctor_id}.uniq
-            # doc_rate = doc.favorites.map{|favs| favs.rating}
-            # doc_com = doc.favorites.map{|favs| favs.comments}
-            # doctors = Doctor.find(d)
             d_id = doc.each {|d| t << :separator
-            t << [("#{Doctor.find_by(id: d).name}".green),("#{Doctor.find_by(id: d).specialty.name} Medicine, Phone Number: #{Doctor.find_by(id: d).phone_number}")]
-                t << [("Rating : #{Doctor.find(d).favorites.map{|f| f.rating}.last}"),("Comment : #{Doctor.find(d).favorites.map{|f| f.comments}.last}")]
+            t << [("#{Doctor.find_by(id: d).name}".green),("#{Doctor.find_by(id: d).specialty.name} Medicine, Rating : #{Doctor.find(d).favorites.map{|f| f.rating}.last}, Phone Number: #{Doctor.find_by(id: d).phone_number}")]
+                t << [(" "),("Comment : #{Doctor.find(d).favorites.map{|f| f.comments}.last}")]
             }
         end
         puts " "
@@ -127,10 +125,11 @@ def add_fav_list(doctor)
     task_menu
 end
 
+
 def update_fav_list
     fav_list_view
     
-    doctor_name = $prompt.ask("Please update doctor's rating and comment.")
+    doctor_name = $prompt.ask("please enter doctor's name you wish to update their rating and comments.")
     doctor = find_doctor(doctor_name)
     if !doctor
         puts " "
@@ -149,49 +148,71 @@ def update_fav_list
         end
         
     else
-        favorites = user.favorites.select{|favs| favs.doctor_id == doctor.id}
-        new_rating = $prompt.ask("Please enter new ratings.")
-        new_comment = $prompt.ask("Please write a comments.")
-        comment = favorites.map{|favorites| favorites.comments}.uniq << new_comment
-        ratings = favorites.map{|favorites| favorites.rating}.uniq << new_rating
-        # puts comment.last
-        # puts ratings.last
-# d8.favorites.map{|favs| favs.user_id }
-# u1.favorites.map{|favs| favs.doctor_id}
-# u1.favorites.select{|favs| favs.doctor_id == d3.id}
-# binding.pry
-# 0
-
-        large_table=Terminal::Table.new :title =>"#{@user_name}'s Favorites List".upcase.yellow, :style => {:width => 100, :padding_left => 3, :border_x => "=", :border_i => "="} do |t|
-            doc = find_favs_list.map{|f| f.doctor_id}.uniq
-            d_id = doc.each {|d| t << :separator
-                t << [("#{Doctor.find_by(id: d).name}".green),("#{Doctor.find_by(id: d).specialty.name} Medicine, Phone Number: #{Doctor.find_by(id: d).phone_number}")]
-                t << [("Ratings : #{ratings.last}"), ("Comments : #{comment.last}")]
-            }
-                # if doc.id == doctor.id 
-                #     {|d| t << :separator
-                #         t << [("#{Doctor.find_by(id: d).name}".green),("#{Doctor.find_by(id: d).specialty.name} Medicine, Phone Number: #{Doctor.find_by(id: d).phone_number}")]
-                #         t << [("Ratings : #{ratings.last}"), ("Comments : #{comment.last}")]
-                #     }
-                # else
-                #     {|d| t << :separator
-                #     t << [("#{Doctor.find_by(id: d).name}".green),("#{Doctor.find_by(id: d).specialty.name} Medicine, Phone Number: #{Doctor.find_by(id: d).phone_number}")]
-                #     }
-                # end
-            
+        list = ["update rating", "update comment", "Go back to main menu"]
+        input = $prompt.select("*".green,list)
+    
+        case input
+        when list[0]
+            update_rate
+            fav_list_view
+            updated_message
+        when list[1]
+            update_comment
+            fav_list_view
+            updated_message
+        when list[2]
+            task_menu 
         end
-        puts " "
-        puts large_table
-        updated_message
     end
-    task_menu
-        
 end
+
+
+def update_rate
+        puts "update rate"
+end
+
+def update_comment
+        puts "update comment"
+end
+
+
+    
+#         favorites = user.favorites.select{|favs| favs.doctor_id == doctor.id}
+#         new_rating = $prompt.ask("Please enter new ratings.")
+#         new_comment = $prompt.ask("Please write a comments.")
+#         comment = favorites.map{|favorites| favorites.comments}.uniq << new_comment
+#         ratings = favorites.map{|favorites| favorites.rating}.uniq << new_rating
+# # binding.pry
+# # 0
+
+#         large_table=Terminal::Table.new :title =>"#{@user_name}'s Favorites List".upcase.yellow, :style => {:width => 100, :padding_left => 3, :border_x => "=", :border_i => "="} do |t|
+#             doc = find_favs_list.map{|f| f.doctor_id}.uniq
+#             d_id = doc.each {|d| t << :separator
+#                 t << [("#{Doctor.find_by(id: d).name}".green),("#{Doctor.find_by(id: d).specialty.name} Medicine, Phone Number: #{Doctor.find_by(id: d).phone_number}")]
+#                 t << [("Ratings : #{ratings.last}"), ("Comments : #{comment.last}")]
+#             }
+#                 # if doc.id == doctor.id 
+#                 #     {|d| t << :separator
+#                 #         t << [("#{Doctor.find_by(id: d).name}".green),("#{Doctor.find_by(id: d).specialty.name} Medicine, Phone Number: #{Doctor.find_by(id: d).phone_number}")]
+#                 #         t << [("Ratings : #{ratings.last}"), ("Comments : #{comment.last}")]
+#                 #     }
+#                 # else
+#                 #     {|d| t << :separator
+#                 #     t << [("#{Doctor.find_by(id: d).name}".green),("#{Doctor.find_by(id: d).specialty.name} Medicine, Phone Number: #{Doctor.find_by(id: d).phone_number}")]
+#                 #     }
+#                 # end
+            
+#         end
+#         puts " "
+#         puts large_table
+#         updated_message
+#     end
+#     task_menu
+        
 
 
 def delete_fav_list
     fav_list_view
-    # user = find_user(@user_name)
     doctor_name = $prompt.ask("Please enter your doctor name that you would like to delete.")
     doctor = find_doctor(doctor_name)
     if !doctor
