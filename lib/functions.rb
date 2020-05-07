@@ -42,25 +42,6 @@ def sign_up(user_name)
 end
 
 
-<<<<<<< HEAD
-def find_user(user_name)
-    user= User.find_by(name: user_name)
-end
-
-
-def find_doctor(doctor_name)
-    doctor = Doctor.find_by(name: doctor_name)
-end
-
-
-def find_favs_list
-    user = find_user(@user_name)
-    favs_list = Favorite.all.select{|favs_lists| favs_lists.user_id == user.id}
-end
-
-
-=======
->>>>>>> esther
 def fav_list_view
     if find_favs_list != []
         large_table=Terminal::Table.new :title =>"#{@user_name}'s Favorites List".upcase.yellow, :style => {:width => 100, :padding_left => 3, :border_x => "=", :border_i => "="} do |t|
@@ -85,12 +66,8 @@ def fav_list_table
     puts " "
     task_menu
 end
-<<<<<<< HEAD
-# binding.pry
-=======
 
 
->>>>>>> esther
 def add_fav_list(doctor)
     user = find_user(@user_name)
     
