@@ -86,11 +86,7 @@ def fav_list_view
             d_id = doc.each {|d| t << :separator
                 t << [(" "),("#{Doctor.find_by(id: d).specialty.name} Medicine")]
                 t << [(" "),("Phone Number: #{Doctor.find_by(id: d).phone_number}")]
-<<<<<<< HEAD
                 t << [("#{Doctor.find_by(id: d).name}".green),("My Rating : #{user.favorites.find_by(doctor_id: d).rating}")]
-=======
-                t << [("#{Doctor.find_by(id: d).name}".green),("Rating : #{user.favorites.find_by(doctor_id: d).rating}")]
->>>>>>> esther
                 t << [(" "),("Comment : #{Doctor.find(d).favorites.map{|f| f.comments}.last}")]
             }
         end
@@ -158,25 +154,13 @@ def update_fav_list
         input = $prompt.select("*".green,list)
     
         case input
-<<<<<<< HEAD
-        when list[0]
-            update_rate(doctor)
-    
-=======
         when list[0]            
->>>>>>> esther
             fav_list_view
             update_rate(doctor)
             updated_message
             task_menu
 
-<<<<<<< HEAD
-        when list[1]
-            update_comment(doctor)
-
-=======
         when list[1]            
->>>>>>> esther
             fav_list_view
             update_comment(doctor)
             updated_message
@@ -191,25 +175,9 @@ end
 
 def update_rate(doctor)
     new_rating = $prompt.ask("Please enter new ratings.")
-<<<<<<< HEAD
-#    favorites = user.favorites.select{|favs| favs.doctor_id == doctor.id}
-   user.favorites.find_by(doctor_id: doctor.id).update(rating: new_rating) 
-   fav_list_view
-   task_menu 
-#     ratings = favorites.map{|favorites| favorites.rating}.uniq << new_rating
-#     puts ratings.last
-#     new_fav = Favorite.create(user_id: user.id, doctor_id: doctor.id)
-#     find_favs_list << new_fav
-#     doc = find_favs_list.map{|f| f.doctor_id}.uniq
-#     d_id = doc.each {|d| 
-#         find_favs_list << [("#{Doctor.find_by(id: d).name}"),("#{Doctor.find_by(id: d).specialty.name} Medicine"), ("Phone Number: #{Doctor.find_by(id: d).phone_number}"),("Rating : #{@user_name.favorites.last.rating= new_rating}"),("Comment : #{Doctor.find(d).favorites.map{|f| f.comments}.last}")]
-#     }
-
-=======
     user.favorites.find_by(doctor_id: doctor.id).update(rating: new_rating)
     fav_list_view
     task_menu
->>>>>>> esther
 end
 
 def update_comment(doctor)
