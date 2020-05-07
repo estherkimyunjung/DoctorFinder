@@ -8,3 +8,4 @@ Doctor Finder is an app that allows you to search for doctors based on their spe
 
 Please make sure to "Bundle Install" first in order to install the required gems for this application. 
 
+Try run `ruby bin/run.rb`
