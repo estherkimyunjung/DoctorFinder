@@ -64,9 +64,9 @@ def search_rating
 end 
 
 def rating_input_selection(rating_input_given)
-    if Favorite.all.map do |inst| inst.rating end.include?(rating_input_given.to_i)
-        ratings_list = Favorite.all.where(rating: rating_input_given)
-        selection = ratings_list.map do |inst| Doctor.find(inst.doctor_id).name end 
+    if Doctor.all.map do |inst| inst.rate end.include?(rating_input_given.to_i)
+        ratings_list = Doctor.all.where(rate: rating_input_given)
+        selection = ratings_list.map do |inst| inst.name end 
         view = $prompt.select("The following doctors have a rating of #{rating_input_given}. Please choose a doctor to continue:".blue, selection)  
         show_doctor_info(view) 
     else 
@@ -102,6 +102,8 @@ def show_doctor_info(view)
         t.add_row ["Phone Number".upcase.green, doctor_instance.phone_number]
         t << :separator 
         t.add_row ["Gender".upcase.green, doctor_instance.gender]
+        t << :separator 
+        t.add_row ["Overall Rating".upcase.green, doctor_instance.rate]
       end
     puts table 
     puts " "

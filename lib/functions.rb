@@ -86,7 +86,7 @@ def fav_list_view
             d_id = doc.each {|d| t << :separator
                 t << [(" "),("#{Doctor.find_by(id: d).specialty.name} Medicine")]
                 t << [(" "),("Phone Number: #{Doctor.find_by(id: d).phone_number}")]
-                t << [("#{Doctor.find_by(id: d).name}".green),("Rating : #{Doctor.find(d).favorites.map{|f| f.rating}.last}")]
+                t << [("#{Doctor.find_by(id: d).name}".green),("My Rating : #{user.favorites.find_by(doctor_id: d).rating}")]
                 t << [(" "),("Comment : #{Doctor.find(d).favorites.map{|f| f.comments}.last}")]
             }
         end
@@ -119,7 +119,7 @@ def add_fav_list(doctor)
         find_favs_list << new_fav
         doc = find_favs_list.map{|f| f.doctor_id}.uniq
         d_id = doc.each {|d| 
-            find_favs_list << [("#{Doctor.find_by(id: d).name}"),("#{Doctor.find_by(id: d).specialty.name} Medicine"), ("Phone Number: #{Doctor.find_by(id: d).phone_number}"),("Rating : #{Doctor.find(d).favorites.map{|f| f.rating}.last}"),("Comment : #{Doctor.find(d).favorites.map{|f| f.comments}.last}")]
+            find_favs_list << [("#{Doctor.find_by(id: d).name}"),("#{Doctor.find_by(id: d).specialty.name} Medicine"), ("Phone Number: #{Doctor.find_by(id: d).phone_number}"),("Personal Rating : #{Doctor.find(d).favorites.map{|f| f.rating}.last}"),("Comment : #{Doctor.find(d).favorites.map{|f| f.comments}.last}")]
         }
         fav_list_view
         updated_message
@@ -150,18 +150,18 @@ def update_fav_list
         end
         
     else
-        list = ["update rating", "update comment", "Go back to main menu"]
+        list = ["Update rating", "Update comment", "Go back to main menu"]
         input = $prompt.select("*".green,list)
     
         case input
         when list[0]
-            # update_rate(doctor)
+            update_rate(doctor)
     
             fav_list_view
             updated_message
 
         when list[1]
-            # update_comment(doctor)
+            update_comment(doctor)
 
             fav_list_view
             updated_message
@@ -174,16 +174,19 @@ end
 
 
 def update_rate(doctor)
-    favorites = user.favorites.select{|favs| favs.doctor_id == doctor.id}
     new_rating = $prompt.ask("Please enter new ratings.")
-    ratings = favorites.map{|favorites| favorites.rating}.uniq << new_rating
-    puts ratings.last
-    new_fav = Favorite.create(user_id: user.id, doctor_id: doctor.id)
-    find_favs_list << new_fav
-    doc = find_favs_list.map{|f| f.doctor_id}.uniq
-    d_id = doc.each {|d| 
-        find_favs_list << [("#{Doctor.find_by(id: d).name}"),("#{Doctor.find_by(id: d).specialty.name} Medicine"), ("Phone Number: #{Doctor.find_by(id: d).phone_number}"),("Rating : #{update_rate(doctor)}"),("Comment : #{Doctor.find(d).favorites.map{|f| f.comments}.last}")]
-    }
+#    favorites = user.favorites.select{|favs| favs.doctor_id == doctor.id}
+   user.favorites.find_by(doctor_id: doctor.id).update(rating: new_rating) 
+   fav_list_view
+   task_menu 
+#     ratings = favorites.map{|favorites| favorites.rating}.uniq << new_rating
+#     puts ratings.last
+#     new_fav = Favorite.create(user_id: user.id, doctor_id: doctor.id)
+#     find_favs_list << new_fav
+#     doc = find_favs_list.map{|f| f.doctor_id}.uniq
+#     d_id = doc.each {|d| 
+#         find_favs_list << [("#{Doctor.find_by(id: d).name}"),("#{Doctor.find_by(id: d).specialty.name} Medicine"), ("Phone Number: #{Doctor.find_by(id: d).phone_number}"),("Rating : #{@user_name.favorites.last.rating= new_rating}"),("Comment : #{Doctor.find(d).favorites.map{|f| f.comments}.last}")]
+#     }
 
 end
 
