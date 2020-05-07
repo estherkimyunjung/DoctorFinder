@@ -175,19 +175,9 @@ end
 
 def update_rate(doctor)
     new_rating = $prompt.ask("Please enter new ratings.")
-#    favorites = user.favorites.select{|favs| favs.doctor_id == doctor.id}
    user.favorites.find_by(doctor_id: doctor.id).update(rating: new_rating) 
    fav_list_view
    task_menu 
-#     ratings = favorites.map{|favorites| favorites.rating}.uniq << new_rating
-#     puts ratings.last
-#     new_fav = Favorite.create(user_id: user.id, doctor_id: doctor.id)
-#     find_favs_list << new_fav
-#     doc = find_favs_list.map{|f| f.doctor_id}.uniq
-#     d_id = doc.each {|d| 
-#         find_favs_list << [("#{Doctor.find_by(id: d).name}"),("#{Doctor.find_by(id: d).specialty.name} Medicine"), ("Phone Number: #{Doctor.find_by(id: d).phone_number}"),("Rating : #{@user_name.favorites.last.rating= new_rating}"),("Comment : #{Doctor.find(d).favorites.map{|f| f.comments}.last}")]
-#     }
-
 end
 
 def update_comment
