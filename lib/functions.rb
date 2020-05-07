@@ -131,7 +131,7 @@ end
 def update_fav_list
     fav_list_view
     
-    doctor_name = $prompt.ask("please enter doctor's name you wish to update their rating and comments.")
+    doctor_name = $prompt.ask("Please enter doctor's name you wish to update their rating and comments.")
     doctor = find_doctor(doctor_name)
     if !doctor
         puts " "
@@ -154,17 +154,17 @@ def update_fav_list
         input = $prompt.select("*".green,list)
     
         case input
-        when list[0]
+        when list[0]            
+            fav_list_view
             update_rate(doctor)
-    
-            fav_list_view
             updated_message
+            task_menu
 
-        when list[1]
+        when list[1]            
+            fav_list_view
             update_comment(doctor)
-
-            fav_list_view
             updated_message
+            task_menu
 
         when list[2]
             task_menu 
@@ -175,26 +175,25 @@ end
 
 def update_rate(doctor)
     new_rating = $prompt.ask("Please enter new ratings.")
+<<<<<<< HEAD
    user.favorites.find_by(doctor_id: doctor.id).update(rating: new_rating) 
    fav_list_view
    task_menu 
+=======
+    user.favorites.find_by(doctor_id: doctor.id).update(rating: new_rating)
+    fav_list_view
+    task_menu
+>>>>>>> master
 end
 
-def update_comment
-    favorites = user.favorites.select{|favs| favs.doctor_id == doctor.id}
-    new_comment = $prompt.ask("Please write a comments.(max : 60 characters")
-    comment = favorites.map{|favorites| favorites.comments}.uniq << new_comment
-    puts comment.last
-    new_fav = Favorite.create(user_id: user.id, doctor_id: doctor.id)
-    find_favs_list << new_fav
-    doc = find_favs_list.map{|f| f.doctor_id}.uniq
-    d_id = doc.each {|d| 
-        find_favs_list << [("#{Doctor.find_by(id: d).name}"),("#{Doctor.find_by(id: d).specialty.name} Medicine"), ("Phone Number: #{Doctor.find_by(id: d).phone_number}"),("Rating : #{Doctor.find(d).favorites.map{|f| f.rating}.last}"),("Comment : #{update_comment(doctor)}")]
-    }
-
+def update_comment(doctor)
+    new_comment = $prompt.ask("Please write a comments.(max : 60 characters)")
+    # favorites = user.favorites.select{|favs| favs.doctor_id == doctor.id}
+    user.favorites.find_by(doctor_id: doctor.id).update(comments: new_comment)
+    fav_list_view
+    task_menu 
 end
-
-
+    
 
 def delete_fav_list
     fav_list_view
