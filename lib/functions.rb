@@ -180,9 +180,9 @@ def update_rate(doctor)
     task_menu
 end
 
+
 def update_comment(doctor)
     new_comment = $prompt.ask("Please write a comments.(max : 60 characters)")
-    # favorites = user.favorites.select{|favs| favs.doctor_id == doctor.id}
     user.favorites.find_by(doctor_id: doctor.id).update(comments: new_comment)
     fav_list_view
     task_menu 
