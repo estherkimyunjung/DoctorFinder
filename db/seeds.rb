@@ -63,5 +63,5 @@ f6=Favorite.create(user_id: u5.id, doctor_id: d8.id, rating: 4, comments: "I wou
 f7=Favorite.create(user_id: u5.id, doctor_id: d4.id, rating: 5, comments: "He was very professional and polite! Would strongly recommend.")
 
 
-binding.pry 
-0
+# binding.pry 
+# 0
