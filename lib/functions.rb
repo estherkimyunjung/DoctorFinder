@@ -175,15 +175,9 @@ end
 
 def update_rate(doctor)
     new_rating = $prompt.ask("Please enter new ratings.")
-<<<<<<< HEAD
-   user.favorites.find_by(doctor_id: doctor.id).update(rating: new_rating) 
-   fav_list_view
-   task_menu 
-=======
     user.favorites.find_by(doctor_id: doctor.id).update(rating: new_rating)
     fav_list_view
     task_menu
->>>>>>> master
 end
 
 def update_comment(doctor)
