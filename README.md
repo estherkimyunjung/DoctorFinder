@@ -1,8 +1,6 @@
 # Doctor Finder Application 
 Doctor Finder is allows you to search for doctors based on their specialty, location, gender, and Ratings. Once the user has found matching doctors, they have the ability to save each doctor to a convenient favorites list. The favorites list can be retrieved and viewed at any time with the option to modify the list with their ratings and comments. 
 
-## Usage Guide
-
 ### Initial Setup
 
 1. Fork and clone this repository to your local machine.
